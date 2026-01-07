@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: rgb(14, 78, 150);
+  --color-brand-red: rgb(237, 20, 90);
+  --font-tahoma: "Tahoma", sans-serif;
+}
+
+@layer components {
+  .nav-link-hover {
+    @apply relative font-semibold text-brand-blue flex items-center;
+    /* This transition covers padding AND color changes smoothly */
+    transition: all 500ms ease-in-out;
+    padding: 20px;
+  }
+
+  /* When the 'is-scrolled' class is added, only the padding changes */
+  .nav-link-hover.is-scrolled {
+    padding: 10px 15px;
+  }
+
+  .nav-link-hover.is-scrolled:hover {
+    color: rgb(255, 255, 255);
+  }
+
+  .nav-link-hover::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    height: 3px;
+    width: 0;
+    @apply bg-brand-red opacity-0 transition-all duration-500 ease-in-out;
+  }
+
+  .nav-link-hover:hover::after {
+    @apply opacity-100;
+    width: calc(100% - 40px);
+    right: auto;
+    left: 20px;
+  }
+
+  .nav-link-hover.is-scrolled::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 36px;
+    width: 0;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    z-index: -1;
+    @apply bg-brand-blue opacity-0 transition-all duration-500 ease-in-out;
+  }
+
+  .nav-link-hover.is-scrolled:hover::after {
+    @apply opacity-100;
+    width: 100%;
+    right: auto;
+    left: 0;
+  }
+}
+
+:root {
+  background: white;
+  color: black;
+}
+
+body {
+  font-family: var(--font-tahoma);
+  overflow-x: hidden;
+  width: 100%;
+}
