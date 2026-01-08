@@ -49,10 +49,8 @@ export default function Hero() {
           <div className="relative w-full h-[350px] md:h-[500px] overflow-hidden flex items-center justify-center text-slate-400">
             <img src="/images/Banner_Image.png" alt="Banner_Image" style={{height: "500px"}}/>
           </div>
-          
-          {/* Decorative Circle (Yocket Style) */}
+
           <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-brand-red rounded-full opacity-20 blur-2xl"></div>
-          <div className="absolute -top-6 -right-6 w-32 h-32 bg-brand-blue rounded-full opacity-10 blur-3xl"></div>
         </div>
 
       </div>
