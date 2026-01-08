@@ -23,7 +23,7 @@ export default function Navbar() {
   // This prevents the "Server vs Client" conflict.
   if (!mounted) {
     return (
-      <nav className="fixed top-0 w-full z-[1000] bg-white py-5 border-b border-transparent">
+      <nav className="fixed top-0 w-full z-[1000] bg-white py-5">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
            <div className="w-[200px] h-[60px] bg-slate-100 animate-pulse rounded" />
            <div className="hidden lg:flex space-x-8">
@@ -47,8 +47,8 @@ export default function Navbar() {
     <nav 
       className={`fixed top-0 w-full z-[1000] transition-all duration-500 font-tahoma 
       ${isScrolled 
-        ? "bg-white py-2 border-brand-blue shadow-lg" 
-        : "bg-white py-5 border-brand-blue"}`}
+        ? "bg-white py-2 shadow-lg" 
+        : "bg-white py-5"}`}
     >
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         
