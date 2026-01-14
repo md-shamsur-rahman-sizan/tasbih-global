@@ -24,17 +24,17 @@ export default function ContactPage() {
                 <ContactInfoItem 
                   icon={<Phone className="text-brand-red" />} 
                   title="Call Us" 
-                  detail="+880 1XXX XXXXXX" 
+                  detail="+880 1337 105605" 
                 />
                 <ContactInfoItem 
                   icon={<Mail className="text-brand-red" />} 
                   title="Email Us" 
-                  detail="info@tasbihglobal.com" 
+                  detail="info.tasbihglobal@gmail.com" 
                 />
                 <ContactInfoItem 
                   icon={<MapPin className="text-brand-red" />} 
                   title="Visit Office" 
-                  detail="Level 4, Building Name, Road Name, Dhaka, Bangladesh" 
+                  detail="399/B (3rd Floor), Shahid Baki Road, Malibagh Chowdhuripara, Khilgaon, Dhaka-1219, Bangladesh" 
                 />
                 <ContactInfoItem 
                   icon={<Clock className="text-brand-red" />} 
@@ -93,7 +93,7 @@ export default function ContactPage() {
       {/* 3. Google Maps Integration */}
       <section className="h-[450px] w-full grayscale hover:grayscale-0 transition-all duration-700 border-t">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.90244243014!2d90.39126607532454!3d23.75085807867205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b89796e62491%3A0x696b949219e9e62e!2sFarmgate%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd" 
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d228.24144858395024!2d90.41747170801432!3d23.752258049842432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1768369335401!5m2!1sen!2sbd" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 

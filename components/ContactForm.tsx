@@ -29,11 +29,11 @@ export default function ContactForm() {
             <div className="space-y-4 text-sm">
               <div className="flex items-center gap-3">
                 <span className="bg-white/20 p-2 rounded-full">📞</span>
-                <span>+880 1XXX-XXXXXX</span>
+                <span>+880 1337-105605</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="bg-white/20 p-2 rounded-full">📍</span>
-                <span>Banani, Dhaka, Bangladesh</span>
+                <span>399/B (3rd Floor), Shahid Baki Road, Malibagh Chowdhuripara, Khilgaon, Dhaka-1219, Bangladesh</span>
               </div>
             </div>
           </div>

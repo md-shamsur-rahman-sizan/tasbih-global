@@ -11,7 +11,7 @@ export default function Footer() {
               <div className="text-2xl font-bold">
                 <div className={`relative transition-all duration-500 w-[200px]`}>
                   {/* Using your Image tag here */}
-                  <img src="/images/Logo.png" alt="Tasbih Global Logo" className="object-contain transition-all duration-500" />
+                  <img src="/images/Logo.png" alt="Tasbih Global Logo"/>
                 </div>
               </div>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -46,13 +46,13 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-6 border-b-2 border-brand-red w-fit">Contact Us</h4>
             <ul className="space-y-3 text-slate-400 text-sm">
               <li className="flex items-center gap-2">
-                <span>📍</span> Dhaka, Bangladesh / Sydney, AU
+                <span>📍</span> 399/B (3rd Floor), Shahid Baki Road, Malibagh Chowdhuripara, Khilgaon, Dhaka-1219, Bangladesh
               </li>
               <li className="flex items-center gap-2">
-                <span>📞</span> +880 1XXX-XXXXXX
+                <span>📞</span> +880 1337-105605
               </li>
               <li className="flex items-center gap-2">
-                <span>✉️</span> info@tasbihglobal.com
+                <span>✉️</span> info.tasbihglobal@gmail.com
               </li>
             </ul>
           </div>
