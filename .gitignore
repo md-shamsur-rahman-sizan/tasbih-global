@@ -44,6 +44,7 @@ next-env.d.ts
 # Created by venv; see https://docs.python.org/3/library/venv.html
 venv/
 __pycache__/
+db.sqlite3
 
 node_modules/
 .next/
