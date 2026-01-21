@@ -138,7 +138,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # CORS SETTINGS
 # ============================================================================
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://tasbih-global.vercel.app",
+]
 
 # ============================================================================
 # REST FRAMEWORK SETTINGS
@@ -151,9 +154,3 @@ REST_FRAMEWORK = {
 
 # Get the specific Render hostname
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('https://tasbih-global.onrender.com')
-
-# if RENDER_EXTERNAL_HOSTNAME:
-#     ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, 'localhost', '127.0.0.1']
-# else:
-#     # This allows everything during troubleshooting (temporary)
-#     ALLOWED_HOSTS = ['*']
