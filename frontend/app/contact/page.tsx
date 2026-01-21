@@ -24,11 +24,23 @@ export default function ContactPage() {
       message: formData.get('message'),
     };
 
+// const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/inquiry/`, {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify(formData),
+// });
+
+// // FIX: Check for "ok" (covers 200-299) or specifically 201
+// if (response.ok) { 
+//   alert("Success! Your inquiry has been sent.");
+//   setFormData({ name: '', email: '', message: '' }); // Clear form
+// } else {
+//   alert("Unable to connect to the server.");
+// }
+
     try {
-      // Replace: await fetch('http://127.0.0.1:8000/api/inquiry/', ...
-        // With:
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-        const response = await fetch(`${apiUrl}/api/inquiry/`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/inquiry/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
