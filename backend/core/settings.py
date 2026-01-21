@@ -34,7 +34,9 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = ['tasbih-global.onrender.com', 'localhost', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://tasbih-global.onrender.com',
+    "https://tasbih-global.onrender.com",
+    "https://tasbihglobal.com.bd",
+    "https://md-shamsur-rahman-sizan-tasbih-glob.vercel.app",
 ]
 
 # ============================================================================
@@ -140,7 +142,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://tasbih-global.vercel.app",
+    "https://tasbihglobal.com.bd",
+    "https://www.tasbihglobal.com.bd",
+    "https://md-shamsur-rahman-sizan-tasbih-glob.vercel.app",
 ]
 
 # ============================================================================
