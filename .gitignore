@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Created by venv; see https://docs.python.org/3/library/venv.html
+venv/
+__pycache__/
+
+node_modules/
+.next/
+out/
+build/
+.env
