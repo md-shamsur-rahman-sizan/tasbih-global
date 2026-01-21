@@ -34,7 +34,7 @@ export default function ContactPage() {
         body: JSON.stringify(data),
       });
 
-      if (response.ok) {
+      if (response.status === 200 || response.status === 201) {
         setMessage({ type: 'success', text: 'Thank you! Your message has been sent to Tasbih Global.' });
         event.currentTarget.reset();
       } else {
