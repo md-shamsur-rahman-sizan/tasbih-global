@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-rgxd(*88^q2hunk()8l30p9i(t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = ['tasbih-global.onrender.com', 'localhost', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://tasbih-global.onrender.com',
@@ -148,3 +148,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
+
+# Get the specific Render hostname
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('https://tasbih-global.onrender.com')
+
+# if RENDER_EXTERNAL_HOSTNAME:
+#     ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, 'localhost', '127.0.0.1']
+# else:
+#     # This allows everything during troubleshooting (temporary)
+#     ALLOWED_HOSTS = ['*']
