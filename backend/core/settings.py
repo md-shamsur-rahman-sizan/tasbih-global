@@ -31,12 +31,17 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-rgxd(*88^q2hunk()8l30p9i(t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['tasbih-global.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'tasbih-global.onrender.com',
+    'tasbihglobal.com.bd',
+    'www.tasbihglobal.com.bd',
+    'localhost',
+    '127.0.0.1'
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://tasbih-global.onrender.com",
-    "https://tasbihglobal.com.bd",
-    "https://md-shamsur-rahman-sizan-tasbih-glob.vercel.app",
+    "https://tasbihglobal.com.bd"
 ]
 
 # ============================================================================
@@ -141,10 +146,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # ============================================================================
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
     "https://tasbihglobal.com.bd",
-    "https://www.tasbihglobal.com.bd",
     "https://md-shamsur-rahman-sizan-tasbih-glob.vercel.app",
+    "http://localhost:3000",
 ]
 
 # ============================================================================

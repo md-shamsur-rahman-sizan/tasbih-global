@@ -11,11 +11,15 @@ export default function ContactPage() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    
+    // FIX 1: Capture the form reference immediately. 
+    // event.currentTarget becomes null after the first 'await'.
+    const form = event.currentTarget; 
+    
     setLoading(true);
     setMessage(null);
 
-    const formData = new FormData(event.currentTarget);
-    
+    const formData = new FormData(form);
     const data = {
       full_name: formData.get('full_name'),
       phone: formData.get('phone'),
@@ -24,37 +28,40 @@ export default function ContactPage() {
       message: formData.get('message'),
     };
 
-// const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/inquiry/`, {
-//   method: 'POST',
-//   headers: { 'Content-Type': 'application/json' },
-//   body: JSON.stringify(formData),
-// });
-
-// // FIX: Check for "ok" (covers 200-299) or specifically 201
-// if (response.ok) { 
-//   alert("Success! Your inquiry has been sent.");
-//   setFormData({ name: '', email: '', message: '' }); // Clear form
-// } else {
-//   alert("Unable to connect to the server.");
-// }
-
     try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/inquiry/`, {
+      // FIX 2: Clean the API URL to prevent double slashes //
+      let apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://tasbih-global.onrender.com';
+      if (apiUrl.endsWith('/')) apiUrl = apiUrl.slice(0, -1);
+      
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); 
+      
+      const response = await fetch(`${apiUrl}/api/inquiry/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
 
-      if (response.status == 200 || response.status == 201) {
+      clearTimeout(timeoutId);
+
+      // FIX 3: response.ok handles status codes 200-299 (including 201 Created)
+      if (response.ok) {
         setMessage({ type: 'success', text: 'Thank you! Your message has been sent to Tasbih Global.' });
-        event.currentTarget.reset();
+        form.reset(); // Use our captured form variable
       } else {
-        const errorData = await response.json();
-        setMessage({ type: 'error', text: 'Submission failed. Please check your details.' });
+        const errorData = await response.json().catch(() => ({}));
+        setMessage({ 
+          type: 'error', 
+          text: errorData.message || 'Submission failed. Please check your details.' 
+        });
       }
     } catch (err) {
-      setMessage({ type: 'error', text: 'Unable to connect to the server. Please try again later.' });
+      console.error('Form submission error:', err);
+      const errorMessage = err instanceof Error && err.name === 'AbortError' 
+        ? 'Request timed out. Please try again.'
+        : 'Unable to connect to the server. Please try again later.';
+      setMessage({ type: 'error', text: errorMessage });
     } finally {
       setLoading(false);
     }
@@ -64,8 +71,7 @@ export default function ContactPage() {
     <main className="min-h-screen bg-white font-tahoma">
       <Navbar />
 
-      {/* Header */}
-      <header className="pt-50 pb-20 bg-brand-blue text-white text-center">
+      <header className="pt-32 pb-20 bg-brand-blue text-white text-center">
         <h1 className="text-[3rem] font-extrabold uppercase">Get In <span className="text-brand-red">Touch</span></h1>
         <p className="mt-4 text-blue-100 px-4">Have questions? Our experts are here to guide you every step of the way.</p>
       </header>
@@ -73,7 +79,6 @@ export default function ContactPage() {
       <section className="py-20 max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-3 gap-12">
           
-          {/* 1. Contact Information */}
           <div className="lg:col-span-1 space-y-8">
             <div>
               <h2 className="text-2xl font-bold text-brand-blue mb-6">Contact Information</h2>
@@ -101,7 +106,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Social Links */}
             <div className="p-8 bg-slate-50 rounded-3xl">
               <h3 className="font-bold text-brand-blue mb-4">Follow Our Updates</h3>
               <div className="flex gap-4">
@@ -112,7 +116,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* 2. Message Form */}
           <div className="lg:col-span-2 bg-white border border-slate-100 shadow-2xl rounded-3xl p-8 md:p-12">
             <h2 className="text-2xl font-bold text-brand-blue mb-8">Send us a Message</h2>
             
@@ -126,7 +129,6 @@ export default function ContactPage() {
                 <input name="phone" type="text" required placeholder="+880" className="w-full p-4 bg-slate-50 border rounded-xl outline-brand-blue" />
               </div>
               
-              {/* Added Email Input to match Django Model */}
               <div className="md:col-span-2 space-y-2">
                 <label className="text-sm font-bold text-slate-700">Email Address</label>
                 <input name="email" type="email" required placeholder="example@gmail.com" className="w-full p-4 bg-slate-50 border rounded-xl outline-brand-blue" />
@@ -166,10 +168,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 3. Google Maps Integration */}
       <section className="h-[450px] w-full grayscale hover:grayscale-0 transition-all duration-700 border-t">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.5831620251784!2d90.4196144!3d23.7622384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9e075037199%3A0xf639ce6b97b0a7c4!2sTasbih%20Global!5e0!3m2!1sen!2sbd!4v1700000000000" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.902344733364!2d90.4184643!3d23.7508608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b87063493e81%3A0xc023c7136f4d360!2sTasbih%20Global!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 
